@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="index.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project - Kholish Nurfajri</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c2c44e7070.js" crossorigin="anonymous"></script>
+  </head>
+  <body id="white">
+    <nav>
+      <div class="nav-left">
+        <a href="index.html"><img src="assets/logo.png" alt="" /></a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="my-project.html">My Project</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <a href="contact-form.html">Contact Me</a>
+      </div>
+    </nav>
+    <div class="grey">
+    <div id="upper-side">
+      <h2>ADD MY PROJECT</h2>
+
+      <div id="project-form">
+        <div id="project-name">
+          <label for="Project Name">Project Name</label><br>
+          <input type="text" id="input-name" />
+        </div>
+
+        <div id="project-startend">
+          <label for="Start Date">Start Date</label>
+          <label for="End Date">End Date</label><br>
+          <input type="datetime-local" id="project-start" />
+          <input type="datetime-local" id="project-end"/>
+        </div>
+
+        <div id="project-description">
+          <label for="Description">Description</label><br>
+          <textarea name="" id="description" cols="30" rows="10"></textarea>
+        </div>
+
+        <div id="project-technologies">
+                <label for="Technologies">Technologies</label><br>
+            <div id="tech-left">
+                <input type="checkbox" id="html-tech" name="tech[]" value="HTML">HTML
+                <input type="checkbox" name="tech[]" id="javacript-tech" value="Javascript">Javascript
+            <div id="tech-right">
+                <input type="checkbox" name="tech[]" id="css-tech" value="CSS">CSS
+                <input type="checkbox" name="tech[]" id="dll" value="Dll">Dan lain-lain
+            </div>
+        </div>
+
+        <div id="project-image">
+            <label>Upload Image</label>
+            <div id="input-image-group">
+                <label for="input-image">
+                    <p id="p">Choose</p>
+                <i id="i" class="fa-solid fa-paperclip"></i>
+                </label>
+                <input type="file" id="input-image" hidden required/>
+            </div> 
+        </div>
+
+        <div id="tombol-project">
+            <button type="button" onclick="addProject()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="project-card">
+    <h1>My Project</h1>
+    </div>
+    <section class="section-card">
+    <div id="card">
+        <a href="detail-project.html" class="card-grid">
+        <img src="assets/pemrograman-dasar-feature.jpg">
+        <p class="card-title">Dowmbways Bootcamp</p>
+        <p class="card-durasi">Durasi : 3 Bulan </p>
+        <p class="card-description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+        <div class="card-technologies">
+        <i class="fa-brands fa-google-play"></i>
+        <i class="fa-brands fa-android"></i>
+        <i class="fa-brands fa-java"></i>
+        </div>
+        <div style=" display: flex;">
+        <button onclick="edit()" class="butom-action" style="margin-right: 10px;">Edit</button>
+        <button onclick="hapus()" class="butom-action">Hapus</button>
+        </div>
+        </a>
+    </div>
+</section>
+  </body>
+</html>
