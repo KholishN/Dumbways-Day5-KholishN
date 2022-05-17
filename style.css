@@ -445,5 +445,4 @@ grid-template-columns: repeat(2,minmax(0,1fr));
 #project-card{
     text-align: center;
     margin-top: 50px;
-    background-color: white;
 }
