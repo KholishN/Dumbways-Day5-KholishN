@@ -33,25 +33,43 @@ function submitForm(){
     
     }
 
+    const month=["Januari","Febuary","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 
 let dataCard=[];
+
+
 function addProject(){
+
+    let checkbox = document.querySelectorAll("input[type=checkbox]:checked")
+    let output = [];
     let  title = document.getElementById("input-name").value;
     let  image = document.getElementById("input-image").files[0];
     let  author= "Kholish Nurfajri";
-    let  date =new Date();
     let  content= document.getElementById("description").value;
-
+    let  start=new Date(document.getElementById("project-start").value);
+    let  end=new Date(document.getElementById("project-end").value);
+    let  duration = difference(start, end);
+    let  date = `${start.getDate()} ${month[start.getMonth()]} ${start.getFullYear()} - ${end.getDate()} ${month[end.getMonth()]} ${end.getFullYear()}`;
    image =URL.createObjectURL(image)
     
+
+   checkbox.forEach((checkbox) => {output.push(checkbox.value)});
+
+
     let project = {
         title : title,
         image : image,
         author : author,
+        duration:duration<30 ? duration+" hari" : parseInt(duration/30)+" bulan",
         date : date,
+        checkbox: output,
         content: content
+    
+    
     }
 
+    
+   
     dataCard.push(project);
     console.log(dataCard)
 
@@ -70,18 +88,16 @@ function renderPage(){
         cardProject.innerHTML =`<a href="detail-project.html" class="card-grid">,
         <img src="${data.image}"</a>
         <p class="card-title">${data.title}</p>
-        <p class="card-durasi">Durasi : 3 Bulan </p>
+        </a>
+        <p class="card-durasi">${data.duration} </p>
         <p class="card-description">${data.content}</p>
-        <div class="card-technologies">
-        <i class="fa-brands fa-google-play"></i>
-        <i class="fa-brands fa-android"></i>
-        <i class="fa-brands fa-java"></i>
+        <div class="card-technologies">${data.checkbox.toString().replaceAll(',',' ')}
         </div>
         <div style=" display: flex;">
         <button onclick="edit(${index})" class="butom-action" style="margin-right: 10px;">Edit</button>
         <button onclick="hapus(${index})" class="butom-action">Hapus</button>
         </div>
-        </a>`
+        `
     })
 }
 
@@ -93,3 +109,9 @@ function edit(index){
         console.log(index);
     }
 
+    function difference(date1, date2) {  
+        const date1utc = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
+        const date2utc = Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate());
+          day = 1000*60*60*24;
+        return(date2utc - date1utc)/day
+    }
