@@ -17,6 +17,7 @@ function submitForm(){
         alert("Nama Tidak Boleh Angka")
     } else(name == ""); {
         alert("Isi Nama Anda!!!")
+        
     };
     
     if (email == ""){
