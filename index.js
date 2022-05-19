@@ -37,12 +37,15 @@ function submitForm(){
 
 let dataCard=[];
 
+if(localStorage.getItem("dataCard") != null){
+    dataCard=JSON.parse(localStorage.getItem("dataCard"))
+}
 
 function addProject(){
 
     let checkbox = document.querySelectorAll("input[type=checkbox]:checked")
     let output = [];
-    let  title = document.getElementById("input-name").value;
+    let  title = document.getElementById("input-nama").value;
     let  image = document.getElementById("input-image").files[0];
     let  author= "Kholish Nurfajri";
     let  content= document.getElementById("description").value;
@@ -73,31 +76,70 @@ function addProject(){
     dataCard.push(project);
     console.log(dataCard)
 
+    localStorage.setItem("dataCard",JSON.stringify(dataCard));
     renderPage()
+
+}
+
+function dataProject(data){
+    localStorage.setItem("data",data)
 }
 
 function renderPage(){
 
-    let cardProject = document.getElementById("card");
-
-
-    
+    let cardProject = document.getElementById("grid");
     cardProject.innerHTML = "";
-    
     dataCard.forEach((data,index)=>{
-        cardProject.innerHTML =`<a href="detail-project.html" class="card-grid">,
+        cardProject.innerHTML +=`<div id="grid">
+        <div id="cards">
+        <div class="div-up" ><a href="detail-project.html" onclick="dataProject(${index})" class="card-grid">
         <img src="${data.image}"</a>
+        </div>
+        <div class="div-down">
         <p class="card-title">${data.title}</p>
-        </a>
         <p class="card-durasi">${data.duration} </p>
-        <p class="card-description">${data.content}</p>
+        <p class="card-description">${data.content.substr(1, 100)}. . .</p>
         <div class="card-technologies">${data.checkbox.toString().replaceAll(',',' ')}
+        </div>
         </div>
         <div style=" display: flex;">
         <button onclick="edit(${index})" class="butom-action" style="margin-right: 10px;">Edit</button>
         <button onclick="hapus(${index})" class="butom-action">Hapus</button>
         </div>
-        `
+        </div>
+        </div>`
+    })
+
+
+    
+}
+
+function renderPageDetail(){
+
+    let projectDetail = document.getElementById("detail-project");
+
+
+    dataCard.forEach((data,index) => {
+        projectDetail.innerHTML += `<h1>${data.title}</h1>
+                                    <div class="content-detail">
+                                        <img src="${data.image}" class="head-detail-image" alt="">
+                                    <div class="r">
+                                    <div class="detail-duration">
+                                        <h3 >Duration</h3>
+                                        <p><i class="ri-calculator-fill">${data.date}</i> </p>
+                                        <p><i class="ri-time-line"></i> ${data.duration}</p>
+                                    </div>
+                                    <div>
+                                        <h3>Technology</h3>
+                                        <div class="detail-item">
+                                        ${data.checkbox.toString().replaceAll(',',' ')}
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="detail-content">
+                                        ${data.content}
+                                    </div>`
     })
 }
 
