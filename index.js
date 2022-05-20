@@ -89,11 +89,11 @@ function dataProject(data){
 function renderPage(){
 
     let cardProject = document.getElementById("grid");
-    // cardProject.innerHTML = "";
+    cardProject.innerHTML = "";
     dataCard.forEach((data,index)=>{
         cardProject.innerHTML +=`<div id="grid">
         <div id="cards">
-        <div class="div-up" ><a href="detail-project.html" onclick="dataProject(${index})" class="card-grid">
+        <div class="div-up" ><a href="detail-project.html" onclick="dataProject(${data})" class="card-grid">
         <img src="${data.image}"</a>
         </div>
         <div class="div-down">
